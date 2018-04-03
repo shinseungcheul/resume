@@ -9,7 +9,7 @@
   </select>
 
 
-  <select id="getEducation" resultType="education">
+  <select id="getEducations" resultType="education">
     SELECT
       idx,
       start_date AS startDate,
@@ -23,7 +23,7 @@
     ORDER  BY endDate DESC
   </select>
 
-  <select id="getCertification" resultType="certification">
+  <select id="getCertifications" resultType="certification">
     SELECT
     idx,
     pass_date AS passDate,
@@ -34,5 +34,26 @@
     ORDER BY passDate DESC
   </select>
 
+  <select id="getCareers" resultType="career">
+    SELECT
+    idx,
+    start_date AS startDate,
+    end_date AS endDate,
+    compony_name as companyName,
+    position,
+    location,
+    state,
+    period
+    from career
+
+  </select>
+
+  <select id="getCareerDetails" resultType="careerDetail">
+    SELECT
+    idx,
+    career_idx AS careerIdx,
+    detail
+    FROM career_detail
+  </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.github.seungcheul.resume.service.resume;
 
 import com.github.seungcheul.resume.repository.resume.ResumeRepository;
+import com.github.seungcheul.resume.vo.Career;
 import com.github.seungcheul.resume.vo.Certification;
 import com.github.seungcheul.resume.vo.Education;
 import com.github.seungcheul.resume.vo.Resume;
@@ -25,20 +26,29 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public List<Education> getEducation() {
-        return resumeRepository.getEducation();
+    public List<Education> getEducations() {
+        return resumeRepository.getEducations();
     }
 
     @Override
-    public List<Certification> getCertification() {
-        return resumeRepository.getCertification();
+    public List<Career> getCareers() {
+        List<Career> careers = resumeRepository.getCareers();
+        for(Career career : careers ){
+            career.setCareerDetails(resumeRepository.getCareerDetails(career.getIdx()));
+        }
+        return resumeRepository.getCareers();
     }
 
     @Override
-    public Map<String, List> getEducations(){
+    public List<Certification> getCertifications() {
+        return resumeRepository.getCertifications();
+    }
+
+    @Override
+    public Map<String, List> getEducationsAndCertifications(){
         Map<String,List> educations = new HashMap<>();
-        educations.put("education",getEducation());
-        educations.put("certification",getCertification());
+        educations.put("education", getEducations());
+        educations.put("certification", getCertifications());
         return educations;
     }
 

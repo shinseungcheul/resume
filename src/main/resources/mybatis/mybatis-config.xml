@@ -13,6 +13,8 @@
 		<typeAlias type="com.github.seungcheul.resume.vo.Resume" alias="resume"></typeAlias>
 		<typeAlias type="com.github.seungcheul.resume.vo.Education" alias="education"></typeAlias>
 		<typeAlias type="com.github.seungcheul.resume.vo.Certification" alias="certification"></typeAlias>
+		<typeAlias type="com.github.seungcheul.resume.vo.Career" alias="career"></typeAlias>
+		<typeAlias type="com.github.seungcheul.resume.vo.CareerDetail" alias="careerDetail"></typeAlias>
 	</typeAliases>
 
 </configuration>

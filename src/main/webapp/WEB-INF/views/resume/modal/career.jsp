@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
     tr.on{
         display: block;
@@ -39,85 +42,92 @@
         <div class="inner_layer">
             <div class="layer_body">
                 <h1><strong class="tit_layer">경력</strong></h1>
-                <table class="tbl_education">
-                    <colgroup>
-                        <col style="width:200px">
-                        <col style="width:150px">
-                        <col style="width:auto">
-                        <col style="width:150px">
-                        <col style="width:150px">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th scope="col">기간</th>
-                        <th scope="col">회사명</th>
-                        <th scope="col">직책 / 역할</th>
-                        <th scope="col">지역 / 직종</th>
-                        <th scope="col">비고</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr class=""><!-- 확장시 overview 제거 축소시 overview 추가 -->
-                            <td>2000.00 ~ 2000.00</td>
-                            <td>사이버다임</td>
-                            <td class="td_blank">사원 / 프로젝트 수행</td>
-                            <td>퇴사</td>
-                            <td>1년 1개월</td>
-                        </tr>
-                        <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                            <td colspan="1"></td>
-                            <td colspan="4" class="career_description">세부내용</td>
-                        </tr>
-                        <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                            <td colspan="1"></td>
-                            <td colspan="4" class="career_description">세부내용</td>
-                        </tr>
-                        <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                            <td colspan="1"></td>
-                            <td colspan="4" class="career_description">세부내용</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <c:if test="${!empty careers}">
+                    <c:forEach var="car" items="${careers}" varStatus="status">
+                        <fmt:formatDate value="${car.startDate}" var="start_date" type="date" pattern="YYYY-MM"></fmt:formatDate>
+                        <fmt:formatDate value="${car.endDate}" var="end_date" type="date" pattern="YYYY-MM"></fmt:formatDate>
+                        <table class="tbl_education">
+                            <colgroup>
+                                <col style="width:200px">
+                                <col style="width:150px">
+                                <col style="width:auto">
+                                <col style="width:150px">
+                                <col style="width:150px">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th scope="col">기간</th>
+                                <th scope="col">회사명</th>
+                                <th scope="col">직책 / 역할</th>
+                                <th scope="col">지역 / 직종</th>
+                                <th scope="col">비고</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class=""><!-- 확장시 overview 제거 축소시 overview 추가 -->
+                                <td>${start_date} ~ ${end_date}</td>
+                                <td>${car.companyName}</td>
+                                <td class="td_blank">${car.position}</td>
+                                <td>${car.state}</td>
+                                <td>${car.period}</td>
+                            </tr>
+                            <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
+                                <td colspan="1"></td>
+                                <td colspan="4" class="career_description">세부내용</td>
+                            </tr>
+                            <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
+                                <td colspan="1"></td>
+                                <td colspan="4" class="career_description">세부내용</td>
+                            </tr>
+                            <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
+                                <td colspan="1"></td>
+                                <td colspan="4" class="career_description">세부내용</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </c:if>
 
-                <table class="tbl_education">
-                    <colgroup>
-                        <col style="width:200px">
-                        <col style="width:150px">
-                        <col style="width:auto">
-                        <col style="width:150px">
-                        <col style="width:150px">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th scope="col">기간</th>
-                        <th scope="col">회사명</th>
-                        <th scope="col">직책 / 역할</th>
-                        <th scope="col">지역 / 직종</th>
-                        <th scope="col">비고</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class=""><!-- 확장시 overview 제거 축소시 overview 추가 -->
-                        <td>2000.00 ~ 2000.00</td>
-                        <td>사이버다임</td>
-                        <td class="td_blank">사원 / 프로젝트 수행</td>
-                        <td>퇴사</td>
-                        <td>1년 1개월</td>
-                    </tr>
-                    <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                        <td colspan="1"></td>
-                        <td colspan="4" class="career_description">세부내용</td>
-                    </tr>
-                    <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                        <td colspan="1"></td>
-                        <td colspan="4" class="career_description">세부내용</td>
-                    </tr>
-                    <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                        <td colspan="1"></td>
-                        <td colspan="4" class="career_description">세부내용</td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <%--<table class="tbl_education">--%>
+                    <%--<colgroup>--%>
+                        <%--<col style="width:200px">--%>
+                        <%--<col style="width:150px">--%>
+                        <%--<col style="width:auto">--%>
+                        <%--<col style="width:150px">--%>
+                        <%--<col style="width:150px">--%>
+                    <%--</colgroup>--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                        <%--<th scope="col">기간</th>--%>
+                        <%--<th scope="col">회사명</th>--%>
+                        <%--<th scope="col">직책 / 역할</th>--%>
+                        <%--<th scope="col">지역 / 직종</th>--%>
+                        <%--<th scope="col">비고</th>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody>--%>
+                    <%--<tr class=""><!-- 확장시 overview 제거 축소시 overview 추가 -->--%>
+                        <%--<td>2000.00 ~ 2000.00</td>--%>
+                        <%--<td>사이버다임</td>--%>
+                        <%--<td class="td_blank">사원 / 프로젝트 수행</td>--%>
+                        <%--<td>퇴사</td>--%>
+                        <%--<td>1년 1개월</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->--%>
+                        <%--<td colspan="1"></td>--%>
+                        <%--<td colspan="4" class="career_description">세부내용</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->--%>
+                        <%--<td colspan="1"></td>--%>
+                        <%--<td colspan="4" class="career_description">세부내용</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->--%>
+                        <%--<td colspan="1"></td>--%>
+                        <%--<td colspan="4" class="career_description">세부내용</td>--%>
+                    <%--</tr>--%>
+                    <%--</tbody>--%>
+                <%--</table>--%>
                <a class="btn_close"><i class="fas fa-times-circle"></i></a>
 
             </div>
