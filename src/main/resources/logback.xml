@@ -1,0 +1,3 @@
+<configuration>
+  <include resource="logconfig/logback-local.xml"/>
+</configuration>

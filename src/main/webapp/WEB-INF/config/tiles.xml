@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="blank_layout" templateExpression="/WEB-INF/template/layouts/blank_layout.jsp">
+        <put-attribute name="content" expression="/WEB-INF/template/blank/content.jsp" />
+    </definition>
+
+    <definition name="main_layout" templateExpression="/WEB-INF/template/layouts/menu_layout.jsp">
+        <put-attribute name="title" value="사진첩"/>
+        <put-attribute name="header" expression="/WEB-INF/template/main/header.jsp"/>
+        <put-attribute name="content" expression="/WEB-INF/template/main/content.jsp"/>
+        <put-attribute name="footer" expression="/WEB-INF/template/main/footer.jsp"/>
+    </definition>
+
+    <definition name="login" extends="blank_layout">
+        <put-attribute name="content" expression="/WEB-INF/views/login.jsp"/>
+    </definition>
+
+    <definition name="index" extends="blank_layout">
+        <put-attribute name="content" expression="/WEB-INF/views/index.jsp"/>
+    </definition>
+
+    <definition name="resume/index" extends="blank_layout">
+        <put-attribute name="content" expression="/WEB-INF/views/resume/index.jsp"/>
+    </definition>
+
+    <definition name="dashboard/*/*" extends="main_layout">
+        <put-attribute name="header" expression="/WEB-INF/views/layout/header.jsp"/>
+        <put-attribute name="content" expression="/WEB-INF/views/{1}/{2}.jsp"/>
+        <put-attribute name="footer" expression="/WEB-INF/views/layout/footer.jsp"/>
+    </definition>
+
+    <definition name="common/error" extends="blank_layout">
+        <put-attribute name="content" expression="/WEB-INF/views/common/error/error.jsp"/>
+    </definition>
+
+</tiles-definitions>

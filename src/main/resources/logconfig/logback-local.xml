@@ -1,0 +1,46 @@
+<included>
+
+	<appender name="SERVICE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../logs/picture_service.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>../logs/picture_service.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>90</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date - %-5p %t %-25logger{5} %F:%L %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CONTROLLER_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../logs/picture_controller.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>../logs/picture_controller.%d{yyyy-MM-dd}</fileNamePattern>
+			<maxHistory>90</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date - %-5p %t %-25logger{5} %F:%L %m%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date - %-5p %t %-25logger{5} %F:%L %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC-FILE" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="FILE"/>
+	</appender>
+
+	<logger name="org.springframework" level="DEBUG"/>
+	<logger name="com.github.seungcheul.pictures" level="DEBUG"/>
+	<logger name="com.github.seungcheul.pictures.repository" level="DEBUG"/>
+	<logger name="com.github.seungcheul.pictures.controller" level="info"/>
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="ASYNC-FILE"/>
+	</root>
+
+</included>

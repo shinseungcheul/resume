@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/tx
+	   http://www.springframework.org/schema/tx/spring-tx.xsd
+	   http://mybatis.org/schema/mybatis-spring
+	   http://mybatis.org/schema/mybatis-spring.xsd">
+
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<property name="driverClassName" value="#{config['jdbc.driver']}"/>
+		<property name="jdbcUrl" value="#{config['jdbc.url']}"/>
+		<property name="username" value="#{config['jdbc.id']}"/>
+		<property name="password" value="#{config['jdbc.pw']}"/>
+		<property name="autoCommit" value="false" />
+		<property name="transactionIsolation" value="TRANSACTION_SERIALIZABLE" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/mybatis/mapper/**/*.xml"/>
+		<property name="typeHandlersPackage" value="com.github.seungcheul.pictures.vo"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+
+	<mybatis:scan base-package="com.github.seungcheul.resume.repository" template-ref="sqlSession"/>
+
+</beans>
