@@ -2,10 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.seungcheul.resume.repository.resume.ResumeRepository">
 
-<select id="getResumeList" resultType="resume">
-  SELECT *
-  FROM resume
-  ORDER BY `order`
-</select>
+  <select id="getResumeList" resultType="resume">
+    SELECT *
+    FROM resume
+    ORDER BY `order`
+  </select>
+
+
+  <select id="getEducation" resultType="education">
+    SELECT
+      idx,
+      start_date AS startDate,
+      end_date AS endDate,
+      description,
+      institutions,
+      complete,
+      extra,
+      is_school AS isSchool
+    FROM education
+    ORDER  BY endDate DESC
+  </select>
+
+  <select id="getCertification" resultType="certification">
+    SELECT
+    idx,
+    pass_date AS passDate,
+    certification_name AS certificationName,
+    institutions,
+    complete
+    FROM certification
+    ORDER BY passDate DESC
+  </select>
+
 
 </mapper>

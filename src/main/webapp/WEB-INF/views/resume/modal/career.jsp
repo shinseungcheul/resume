@@ -39,7 +39,7 @@
         <div class="inner_layer">
             <div class="layer_body">
                 <h1><strong class="tit_layer">경력</strong></h1>
-                <table class="tbl_research">
+                <table class="tbl_education">
                     <colgroup>
                         <col style="width:200px">
                         <col style="width:150px">
@@ -79,7 +79,7 @@
                     </tbody>
                 </table>
 
-                <table class="tbl_research">
+                <table class="tbl_education">
                     <colgroup>
                         <col style="width:200px">
                         <col style="width:150px">

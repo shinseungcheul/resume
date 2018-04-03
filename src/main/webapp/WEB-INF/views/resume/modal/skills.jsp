@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
     #banner_skills {
@@ -100,6 +101,10 @@
         padding-top: 0;
     }
 
+    #three .spotlights .content {
+        padding-left: 30px;
+    }
+
 
 </style>
 
@@ -170,26 +175,35 @@
                 <section id="three" class="wrapper style1">
                     <div class="inner">
                         <div class="spotlights">
-                            <section><span class="image"><img src="/resources/image/skills/java.png" alt=""></span>
-                                <div class="content"><h2>Convallis integer iaculis</h2>
+                            <section>
+                                <span class="image"><img src="/resources/image/skills/java.png" alt=""></span>
+                                <div class="content">
+                                    <h2>Convallis integer iaculis</h2>
                                     <p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,
                                         ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem
                                         pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada.</p></div>
+                                        morbi tristique senectus et netus et malesuada.</p>
+                                </div>
                             </section>
-                            <section><span class="image"><img src="/resources/image/skills/spring.png" alt=""></span>
-                                <div class="content"><h2>Ultrices augue faucibus</h2>
+                            <section>
+                                <span class="image"><img src="/resources/image/skills/spring.png" alt=""></span>
+                                <div class="content">
+                                    <h2>Ultrices augue faucibus</h2>
                                     <p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,
                                         ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem
                                         pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada.</p></div>
+                                        morbi tristique senectus et netus et malesuada.</p>
+                                </div>
                             </section>
-                            <section><span class="image"><img src="/resources/image/skills/angular.png" alt=""></span>
-                                <div class="content"><h2>Integer sed sodales</h2>
+                            <section>
+                                <span class="image"><img src="/resources/image/skills/angular.png" alt=""></span>
+                                <div class="content">
+                                    <h2>Integer sed sodales</h2>
                                     <p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,
                                         ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem
                                         pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada.</p></div>
+                                        morbi tristique senectus et netus et malesuada.</p>
+                                </div>
                             </section>
                         </div>
                     </div>

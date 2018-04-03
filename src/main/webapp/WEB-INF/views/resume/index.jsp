@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <style>
     #banner {
         background: linear-gradient(to right,#ff9aa9,#7bd0c1,#c75b9b,#ae85ca,#8499e7,#7ecaf6,#f2849e );
@@ -32,15 +30,15 @@
     </section>
     <div class="tiles">
         <c:if test="${!empty resumeList}">
-            <c:forEach var="album" items="${resumeList}" varStatus="status">
-                <article class="style${status.index+1}" data-target="${album.name}">
+            <c:forEach var="resume" items="${resumeList}" varStatus="status">
+                <article class="style${status.index+1} resume_subtitle" data-target="${resume.name}">
                     <span class="image">
-                         <img src="/resources/image/${album.name.toLowerCase()}.jpg" onerror='javascript:this.src="/resources/image/empty.png"'>
+                         <img src="/resources/image/ignore/${resume.name.toLowerCase()}.jpg" onerror='javascript:this.src="/resources/image/empty.png"'>
                     </span>
                     <a>
-                        <h2>${album.name}</h2>
+                        <h2>${resume.name}</h2>
                         <div class="content">
-                            <p>${album.description}</p>
+                            <p>${resume.description}</p>
                         </div>
                     </a>
                 </article>
@@ -62,28 +60,16 @@
 
 <script>
     $(function(){
-        var serverData = '<%= new GsonBuilder().setDateFormat("yyyy-mm-dd").create().toJson(request.getAttribute("albumList")) %>';
-        console.log(serverData);
-
-        var $article = $("article");
+        <%--var serverData = '<%= new GsonBuilder().setDateFormat("yyyy-mm-dd").create().toJson(request.getAttribute("resumeList")) %>';--%>
+        var $resume_subtitle = $(".resume_subtitle");
         var $layer_dm = $(".layer_dimmed");
         var $layer_box = $(".layer_box");
         var $close_btn = $(".btn_close");
         var modal = {};
-
-        modal.profile = function(){
-            var $target = $("#profile");
-            $target.show();
-        };
-
-        modal.education = function(){
-            var $target = $("#education");
-            $target.show();
-        };
+        var educations = {};
 
         modal.openModal = function(target){
             var $target = $("#"+target);
-            console.log($target)
             $target.show();
         };
 
@@ -94,7 +80,9 @@
         $close_btn.on("click", function(event){
             event.stopPropagation();
             $layer_dm.hide();
-        })
+        });
+
+
 
 
 
@@ -103,11 +91,20 @@
         });
 
 
-        $article.on("click", function () {
+        $resume_subtitle.each(function (subIndex) {
             var $this = $(this);
-            var target = $this.data("target").toLowerCase().replace(" ","_");
-            modal.openModal(target);
+            $this.on("click", function () {
+                var targetId = $this.data("target").toLowerCase().replace(" ","_");
+                modal.openModal(targetId);
+
+            })
         })
+
+        // $resume_subtitle.on("click", function () {
+        //     var $this = $(this);
+        //     var target = $this.data("target").toLowerCase().replace(" ","_");
+        //     modal[target];
+        // })
     })
 
 
