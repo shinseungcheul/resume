@@ -71,18 +71,14 @@
                                 <td>${car.state}</td>
                                 <td>${car.period}</td>
                             </tr>
-                            <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                                <td colspan="1"></td>
-                                <td colspan="4" class="career_description">세부내용</td>
-                            </tr>
-                            <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                                <td colspan="1"></td>
-                                <td colspan="4" class="career_description">세부내용</td>
-                            </tr>
-                            <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
-                                <td colspan="1"></td>
-                                <td colspan="4" class="career_description">세부내용</td>
-                            </tr>
+                            <c:if test="${!empty car}">
+                                <c:forEach var="detail" items="${car.careerDetails}" varStatus="status">
+                                    <tr class="career_detail "> <!--축소시 off 추가  overview 제거 / 확장시 overview 추가 -->
+                                        <td colspan="1"></td>
+                                        <td colspan="4" class="career_description">${detail.detail}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                             </tbody>
                         </table>
                     </c:forEach>

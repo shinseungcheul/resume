@@ -39,7 +39,7 @@
     idx,
     start_date AS startDate,
     end_date AS endDate,
-    compony_name as companyName,
+    company_name as companyName,
     position,
     location,
     state,
@@ -48,12 +48,13 @@
 
   </select>
 
-  <select id="getCareerDetails" resultType="careerDetail">
+  <select id="getCareerDetails" resultType="careerDetail" parameterType="long">
     SELECT
     idx,
     career_idx AS careerIdx,
     detail
     FROM career_detail
+    WHERE career_idx = #{idx}
   </select>
 
 </mapper>

@@ -33,10 +33,12 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public List<Career> getCareers() {
         List<Career> careers = resumeRepository.getCareers();
+        System.out.println(careers);
         for(Career career : careers ){
             career.setCareerDetails(resumeRepository.getCareerDetails(career.getIdx()));
         }
-        return resumeRepository.getCareers();
+        System.out.println(careers);
+        return careers;
     }
 
     @Override
