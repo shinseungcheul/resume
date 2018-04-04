@@ -1,5 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <style>
     #banner_skills {
         background-color: #303639;
@@ -104,6 +106,9 @@
     #three .spotlights .content {
         padding-left: 30px;
     }
+    .image_size_limit{
+        width: 106px;
+    }
 
 
 </style>
@@ -126,48 +131,57 @@
                             <h2>Skills Summary</h2>
                         </div>
                         <div class="image-circles">
-                            <div class="images">
-                                <span class="image">
-                                    <img src="/resources/image/skills/java.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/spring.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/angular.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/reactive.jpeg" alt="">
-                                </span>
-                            </div>
-                            <div class="images">
-                                <span class="image">
-                                    <img src="/resources/image/skills/oracle.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/mysql.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/mybatis.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/javascript.png" alt="">
-                                </span>
-                            </div>
-                            <div class="images">
-                                <span class="image">
-                                    <img src="/resources/image/skills/bootstrap.jpg" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/html.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img src="/resources/image/skills/css.png" alt="">
-                                </span>
-                                <span class="image">
-                                    <img style="visibility: hidden" src="/resources/image/skills/javascript.png" alt="">
-                                </span>
-                            </div>
+
+                            <c:if test="${!empty skills}">
+                                <c:set var="skillCount" value="${skills.size()}"></c:set>
+                                <c:forEach begin="0" end="${skillCount/4}" varStatus="status">
+                                    <div class="images">
+                                        <c:forEach  var="item" items="${skills}" begin="${status.index*4}" end="${status.index*4+3}">
+                                            <c:if test="${!empty item}">
+                                                <span class="image">
+                                                    <img src="${item.imageUrl}" alt="${item.name}">
+                                                </span>
+                                            </c:if>
+                                            <%--end="${skillCount gt status.index*4+3 ? status.index*4+3 : skillCount }"--%>
+                                        </c:forEach>
+                                        <c:if test="${status.last and skillCount-1 lt status.index*4+3}">
+                                            <c:forEach begin="0" end="${status.index*4+3 - skillCount}">
+                                                <span class="image">
+                                                    <img style="visibility: hidden" src="/resources/image/skills/javascript.png" alt="">
+                                                </span>
+                                            </c:forEach>
+                                        </c:if>
+                                    </div>
+                                </c:forEach>
+                            </c:if>
+                            <%--<div class="images">--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/oracle.png" alt="">--%>
+                                <%--</span>--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/mysql.png" alt="">--%>
+                                <%--</span>--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/mybatis.png" alt="">--%>
+                                <%--</span>--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/javascript.png" alt="">--%>
+                                <%--</span>--%>
+                            <%--</div>--%>
+                            <%--<div class="images">--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/bootstrap.jpg" alt="">--%>
+                                <%--</span>--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/html.png" alt="">--%>
+                                <%--</span>--%>
+                                <%--<span class="image">--%>
+                                    <%--<img src="/resources/image/skills/css.png" alt="">--%>
+                                <%--</span>--%>
+                                <%--<span class="image">--%>
+                                    <%--<img style="visibility: hidden" src="/resources/image/skills/javascript.png" alt="">--%>
+                                <%--</span>--%>
+                            <%--</div>--%>
                         </div>
                     </div>
                 </section>
@@ -175,36 +189,39 @@
                 <section id="three" class="wrapper style1">
                     <div class="inner">
                         <div class="spotlights">
-                            <section>
-                                <span class="image"><img src="/resources/image/skills/java.png" alt=""></span>
-                                <div class="content">
-                                    <h2>Convallis integer iaculis</h2>
-                                    <p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,
-                                        ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem
-                                        pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada.</p>
-                                </div>
-                            </section>
-                            <section>
-                                <span class="image"><img src="/resources/image/skills/spring.png" alt=""></span>
-                                <div class="content">
-                                    <h2>Ultrices augue faucibus</h2>
-                                    <p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,
-                                        ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem
-                                        pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada.</p>
-                                </div>
-                            </section>
-                            <section>
-                                <span class="image"><img src="/resources/image/skills/angular.png" alt=""></span>
-                                <div class="content">
-                                    <h2>Integer sed sodales</h2>
-                                    <p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,
-                                        ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem
-                                        pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant
-                                        morbi tristique senectus et netus et malesuada.</p>
-                                </div>
-                            </section>
+                            <c:if test="${!empty skills}">
+                                <c:forEach var="skill" items="${skills}">
+                                    <section>
+                                        <span class="image">
+                                            <img class="image_size_limit" src="${skill.imageUrl}" alt="${skill.name}">
+                                        </span>
+                                        <div class="content">
+                                            <h2>${skill.name}</h2>
+                                            <p>${skill.skillDetail}</p>
+                                        </div>
+                                    </section>
+                                </c:forEach>
+                            </c:if>
+                            <%--<section>--%>
+                                <%--<span class="image"><img src="/resources/image/skills/spring.png" alt=""></span>--%>
+                                <%--<div class="content">--%>
+                                    <%--<h2>Ultrices augue faucibus</h2>--%>
+                                    <%--<p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,--%>
+                                        <%--ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem--%>
+                                        <%--pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant--%>
+                                        <%--morbi tristique senectus et netus et malesuada.</p>--%>
+                                <%--</div>--%>
+                            <%--</section>--%>
+                            <%--<section>--%>
+                                <%--<span class="image"><img src="/resources/image/skills/angular.png" alt=""></span>--%>
+                                <%--<div class="content">--%>
+                                    <%--<h2>Integer sed sodales</h2>--%>
+                                    <%--<p>Donec elementum odio ut suscipit congue. Fusce magna mattis vel fermentum,--%>
+                                        <%--ultricies et velit. Suspendisse viverra, ante in eleifend vulputate, lacus lorem--%>
+                                        <%--pretium ligula, tincidunt posuere sapien neque a augue. Pellentesque habitant--%>
+                                        <%--morbi tristique senectus et netus et malesuada.</p>--%>
+                                <%--</div>--%>
+                            <%--</section>--%>
                         </div>
                     </div>
                 </section>

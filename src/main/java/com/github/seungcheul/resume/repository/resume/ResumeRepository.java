@@ -15,4 +15,5 @@ public interface ResumeRepository {
     List<Certification> getCertifications();
     List<Career> getCareers();
     List<CareerDetail> getCareerDetails(@Param(value = "idx") long idx);
+    List<Skill> getSkills();
 }

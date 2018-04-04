@@ -1,10 +1,7 @@
 package com.github.seungcheul.resume.service.resume;
 
 import com.github.seungcheul.resume.repository.resume.ResumeRepository;
-import com.github.seungcheul.resume.vo.Career;
-import com.github.seungcheul.resume.vo.Certification;
-import com.github.seungcheul.resume.vo.Education;
-import com.github.seungcheul.resume.vo.Resume;
+import com.github.seungcheul.resume.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,4 +51,8 @@ public class ResumeServiceImpl implements ResumeService {
         return educations;
     }
 
+    @Override
+    public List<Skill> getSkills() {
+        return resumeRepository.getSkills();
+    }
 }

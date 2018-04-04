@@ -57,4 +57,15 @@
     WHERE career_idx = #{idx}
   </select>
 
+
+  <select id="getSkills" resultType="skill">
+    SELECT
+    idx,
+    name,
+    category,
+    skill_detail as skillDetail,
+    image_url as imageUrl
+    FROM skill
+  </select>
+
 </mapper>

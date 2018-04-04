@@ -1,10 +1,7 @@
 package com.github.seungcheul.resume.service.resume;
 
 
-import com.github.seungcheul.resume.vo.Career;
-import com.github.seungcheul.resume.vo.Certification;
-import com.github.seungcheul.resume.vo.Education;
-import com.github.seungcheul.resume.vo.Resume;
+import com.github.seungcheul.resume.vo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -16,4 +13,5 @@ public interface ResumeService {
     List<Certification> getCertifications();
     Map<String, List> getEducationsAndCertifications();
     List<Career> getCareers();
+    List<Skill> getSkills();
 }
