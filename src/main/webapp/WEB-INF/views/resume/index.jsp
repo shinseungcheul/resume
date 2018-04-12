@@ -16,6 +16,12 @@
         margin-bottom : 50px;
     }
 
+    .note-editable{
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+
 </style>
 
 
@@ -105,7 +111,30 @@
         //     var target = $this.data("target").toLowerCase().replace(" ","_");
         //     modal[target];
         // })
+
+
+        var $txtEdit = $(".txtEdit");
+        $txtEdit.each(function (index) {
+            var $this = $(this);
+            $this.summernote({
+                airMode : true
+            })
+            if($this.prev().hasClass("tit_cover")){
+                console.log($this.next().css("height", 307).css("margin-top", "20px"));
+            }
+        })
+
+
+        var $btn_save = $(".btn_save");
+        $btn_save.each(function (index) {
+            var $this = $(this);
+        })
     })
 
 
+
 </script>
+
+<style>
+
+</style>

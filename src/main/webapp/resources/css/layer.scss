@@ -6,6 +6,7 @@
   bottom:0;
   z-index:1000;
   background-color: #49697a;
+
 }
 .layer_box{
   position:absolute;
@@ -31,7 +32,10 @@
   }
 
   .layer_body{
-    padding:37px 30px 30px;
+    padding:0px 30px 30px;
+  }
+  h1 {
+    margin-top: 30px;
   }
 
   .tit_layer{
@@ -226,7 +230,7 @@
   }
 
   .area_tf {
-    margin:0 auto 40px;
+    margin:0 auto 10px;
     border-color:#E9EAEC;
     background-color:#fff;
 

@@ -24,7 +24,7 @@
         <param-value>
             classpath:config/application-context.xml,
             classpath:config/database-context.xml
-            <!--classpath:config/security-context.xml-->
+            classpath:config/security-context.xml
         </param-value>
     </context-param>
 
@@ -46,9 +46,20 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
         <servlet-name>resume-servlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
 
@@ -86,18 +97,18 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--<security-constraint>-->
-        <!--<web-resource-collection>-->
-            <!--<web-resource-name>Forbidden</web-resource-name>-->
-            <!--<url-pattern>/*</url-pattern>-->
-            <!--<http-method>HEAD</http-method>-->
-            <!--<http-method>PUT</http-method>-->
-            <!--<http-method>DELETE</http-method>-->
-            <!--<http-method>TRACE</http-method>-->
-            <!--<http-method>OPTIONS</http-method>-->
-        <!--</web-resource-collection>-->
-        <!--<auth-constraint/>-->
-    <!--</security-constraint>-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Forbidden</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>HEAD</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>OPTIONS</http-method>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
 
     <session-config>
         <session-timeout>60</session-timeout>
